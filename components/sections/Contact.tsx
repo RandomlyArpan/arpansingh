@@ -101,12 +101,12 @@ export function Contact() {
               onSubmit={(e) => {
                 e.preventDefault();
                 setFormState("submitting");
-                
+
                 const formData = new FormData(e.currentTarget);
                 const name = formData.get("name");
                 const email = formData.get("email");
                 const details = formData.get("details");
-                
+
                 const mailtoLink = `mailto:singharpan700@email.com?subject=New Project Inquiry from ${name}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AProject Details:%0D%0A${details}`;
 
                 setTimeout(() => {
@@ -172,7 +172,7 @@ export function Contact() {
         <div className="mt-12 flex flex-col md:flex-row justify-between items-end md:items-center gap-4 font-mono text-[10px] text-text-lo uppercase">
           <div className="flex flex-col gap-1">
             <div>A film by Arpan Singh. © 2025</div>
-            <div className="text-[8px] opacity-70">MADE WITH LOVE BY SUJAL</div>
+            <div >MADE WITH LOVE BY SUJAL</div>
           </div>
 
           <div className="flex items-center gap-4 text-red">
