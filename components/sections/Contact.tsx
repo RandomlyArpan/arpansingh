@@ -170,7 +170,10 @@ export function Contact() {
         </div>
 
         <div className="mt-12 flex flex-col md:flex-row justify-between items-end md:items-center gap-4 font-mono text-[10px] text-text-lo uppercase">
-          <div>A film by Arpan Singh. © 2025</div>
+          <div className="flex flex-col gap-1">
+            <div>A film by Arpan Singh. © 2025</div>
+            <div className="text-[8px] opacity-70">MADE WITH LOVE BY SUJAL</div>
+          </div>
 
           <div className="flex items-center gap-4 text-red">
             <div ref={timecodeRef}>TIMECODE: {formatCountdown(timeLeft)}</div>
