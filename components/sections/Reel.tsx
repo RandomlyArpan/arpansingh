@@ -37,7 +37,7 @@ export function Reel() {
       ease: "none",
     }, 0);
 
-  }, { scope: containerRef, dependencies: [videoDuration] });
+  }, { scope: containerRef });
 
   return (
     <section ref={containerRef} className="h-[100dvh] w-full bg-bg flex flex-col pt-24" id="reel">
