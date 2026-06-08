@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { useLenis } from "lenis/react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const lenis = useLenis();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -23,9 +25,13 @@ export function Navbar() {
   });
 
   const handleScrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (lenis) {
+      lenis.scrollTo(`#${id}`);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -42,11 +48,11 @@ export function Navbar() {
         scrolled ? "bg-bg/80 backdrop-blur-md border-b border-border/50" : "bg-transparent"
       )}
     >
-      <div className="font-bebas text-2xl tracking-wider text-text-hi">
+      <div className="font-bebas text-xl md:text-2xl tracking-wider text-text-hi">
         ARPAN<span className="text-accent">.</span>
       </div>
 
-      <div className="hidden md:flex items-center gap-8 font-mono text-sm tracking-widest text-text-mid">
+      <div className="flex items-center gap-3 md:gap-8 font-mono text-[9px] md:text-sm tracking-widest text-text-mid">
         {["Reel", "Work", "Process", "Contact"].map((item) => (
           <button
             key={item}

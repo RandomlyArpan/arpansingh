@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { FilmGrain } from "@/components/fx/FilmGrain";
 
 export function LoadingScreen() {
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState<number | string>(3);
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {

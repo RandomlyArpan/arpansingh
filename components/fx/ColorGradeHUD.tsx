@@ -34,7 +34,7 @@ export function ColorGradeHUD() {
       />
 
       {/* UI Control */}
-      <div className="fixed bottom-6 left-6 z-[110] font-mono text-[10px]">
+      <div className="fixed bottom-6 right-6 z-[110] font-mono text-[10px]">
         <AnimatePresence>
           {isOpen && (
             <motion.div 
@@ -42,7 +42,7 @@ export function ColorGradeHUD() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="absolute bottom-full left-0 mb-2 bg-surface/90 backdrop-blur-md border border-border/50 p-2 flex flex-col gap-1 w-40 shadow-2xl origin-bottom-left"
+              className="absolute bottom-full right-0 mb-2 bg-surface/90 backdrop-blur-md border border-border/50 p-2 flex flex-col gap-1 w-40 shadow-2xl origin-bottom-right"
             >
               <div className="text-text-mid px-2 py-1 border-b border-border/50 mb-1 tracking-widest flex justify-between items-center">
                 <span>LUMETRI.LUT</span>

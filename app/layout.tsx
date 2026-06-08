@@ -10,6 +10,7 @@ import { FilmGrain } from "@/components/fx/FilmGrain";
 import { ScanLines } from "@/components/fx/ScanLines";
 import { Letterbox } from "@/components/fx/Letterbox";
 import { ColorGradeHUD } from "@/components/fx/ColorGradeHUD";
+import { ScrollProgress } from "@/components/fx/ScrollProgress";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -64,6 +65,7 @@ export default function RootLayout({
           <LoadingScreen />
           <CustomCursor />
           <Navbar />
+          <ScrollProgress />
 
           {/* Sequence Timeline */}
           {children}

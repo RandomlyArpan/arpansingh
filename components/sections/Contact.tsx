@@ -75,9 +75,9 @@ export function Contact() {
 
   return (
     <section ref={containerRef} className="min-h-screen w-full bg-black relative flex flex-col justify-between py-12 px-6 md:px-12" id="contact">
-      
+
       <div className="flex-1 flex flex-col items-center justify-center">
-        
+
         <h2 ref={titleRef} className="font-bebas text-[10vw] md:text-[8vw] leading-none text-center text-text-hi mb-8">
           <div className="overflow-hidden"><div className="line-wrapper">YOUR FOOTAGE</div></div>
           <div className="overflow-hidden"><div className="line-wrapper">DESERVES BETTER.</div></div>
@@ -89,7 +89,7 @@ export function Contact() {
 
         <div className="min-h-[300px] flex flex-col justify-center items-center w-full">
           {!showForm ? (
-            <button 
+            <button
               onClick={() => setShowForm(true)}
               className="border border-border bg-surface px-8 py-4 font-mono text-sm tracking-widest hover:bg-accent hover:text-bg hover:border-accent transition-colors duration-300 relative group"
             >
@@ -97,11 +97,22 @@ export function Contact() {
               <div className="absolute inset-0 border border-accent scale-105 opacity-0 group-hover:opacity-100 transition-all duration-300" />
             </button>
           ) : (
-            <form 
+            <form
               onSubmit={(e) => {
                 e.preventDefault();
                 setFormState("submitting");
-                setTimeout(() => setFormState("success"), 1500);
+                
+                const formData = new FormData(e.currentTarget);
+                const name = formData.get("name");
+                const email = formData.get("email");
+                const details = formData.get("details");
+                
+                const mailtoLink = `mailto:singharpan700@email.com?subject=New Project Inquiry from ${name}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AProject Details:%0D%0A${details}`;
+
+                setTimeout(() => {
+                  window.location.href = mailtoLink;
+                  setFormState("success");
+                }, 1000);
               }}
               className="w-full max-w-md flex flex-col gap-4 font-mono text-xs animate-in fade-in slide-in-from-bottom-4 duration-500"
             >
@@ -114,15 +125,15 @@ export function Contact() {
                 <>
                   <div className="flex flex-col gap-2">
                     <label className="text-text-mid tracking-widest">NAME</label>
-                    <input required className="bg-surface border border-border/50 p-3 text-text-hi focus:border-accent focus:outline-none transition-colors" />
+                    <input name="name" required className="bg-surface border border-border/50 p-3 text-text-hi focus:border-accent focus:outline-none transition-colors" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-text-mid tracking-widest">EMAIL</label>
-                    <input required type="email" className="bg-surface border border-border/50 p-3 text-text-hi focus:border-accent focus:outline-none transition-colors" />
+                    <input name="email" required type="email" className="bg-surface border border-border/50 p-3 text-text-hi focus:border-accent focus:outline-none transition-colors" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-text-mid tracking-widest">PROJECT DETAILS</label>
-                    <textarea required rows={4} className="bg-surface border border-border/50 p-3 text-text-hi focus:border-accent focus:outline-none transition-colors resize-none" />
+                    <textarea name="details" required rows={4} className="bg-surface border border-border/50 p-3 text-text-hi focus:border-accent focus:outline-none transition-colors resize-none" />
                   </div>
                   <div className="flex gap-4 mt-4">
                     <button type="button" onClick={() => setShowForm(false)} className="px-6 py-3 border border-border/50 text-text-mid hover:text-text-hi transition-colors w-1/3">
@@ -142,25 +153,25 @@ export function Contact() {
 
       <div className="w-full">
         <div className="w-full h-px bg-border/30 mb-8" />
-        
+
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 font-mono text-xs tracking-widest text-text-mid">
-          
-          <a href="mailto:arpansingh@email.com" className="hover:text-text-hi transition-colors">
-            arpansingh@email.com
+
+          <a href="mailto:singharpan700@email.com" className="hover:text-text-hi transition-colors">
+            singharpan700@email.com
           </a>
 
           <div className="flex gap-6">
-            <a href="#" className="hover:text-text-hi transition-colors">IG</a>
-            <a href="#" className="hover:text-text-hi transition-colors">YT</a>
+            <a href="https://www.instagram.com/smplyarpan" className="hover:text-text-hi transition-colors">INSTAGRAM</a>
+            {/* <a href="#" className="hover:text-text-hi transition-colors">YT</a>
             <a href="#" className="hover:text-text-hi transition-colors">LI</a>
-            <a href="#" className="hover:text-text-hi transition-colors">BE</a>
+            <a href="#" className="hover:text-text-hi transition-colors">BE</a> */}
           </div>
 
         </div>
 
         <div className="mt-12 flex flex-col md:flex-row justify-between items-end md:items-center gap-4 font-mono text-[10px] text-text-lo uppercase">
           <div>A film by Arpan Singh. © 2025</div>
-          
+
           <div className="flex items-center gap-4 text-red">
             <div ref={timecodeRef}>TIMECODE: {formatCountdown(timeLeft)}</div>
             {timeLeft <= 0 && <div className="animate-pulse">END OF SEQUENCE ■</div>}

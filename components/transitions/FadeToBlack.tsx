@@ -28,9 +28,7 @@ export function FadeToBlack() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="h-[20vh] w-full flex items-center justify-center relative">
-      {/* FIN flash text */}
-      <div ref={finRef} className="font-bebas text-6xl text-white opacity-0">FIN</div>
+    <div ref={containerRef} className="h-[20vh] w-full flex items-center justify-center relative bg-bg">
     </div>
   );
 }

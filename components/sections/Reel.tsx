@@ -12,6 +12,7 @@ export function Reel() {
   const timelineRef = useRef<HTMLDivElement>(null);
   const playheadRef = useRef<HTMLDivElement>(null);
   const [videoDuration, setVideoDuration] = useState(10); // default fallback
+  const [isMuted, setIsMuted] = useState(true);
 
   const handleLoadedMetadata = () => {
     if (videoRef.current) {
@@ -27,18 +28,6 @@ export function Reel() {
         end: "+=300%",
         scrub: 0.5,
         pin: true,
-        onUpdate: (self) => {
-          if (videoRef.current) {
-            // Map scroll progress to video time
-            const targetTime = self.progress * videoDuration;
-            // Safari friendly video scrubbing
-            requestAnimationFrame(() => {
-              if (videoRef.current) {
-                videoRef.current.currentTime = targetTime;
-              }
-            });
-          }
-        }
       }
     });
 
@@ -54,20 +43,31 @@ export function Reel() {
     <section ref={containerRef} className="h-screen w-full bg-bg flex flex-col pt-24" id="reel">
       {/* Video Monitor */}
       <div className="flex-1 w-full max-w-6xl mx-auto px-4 relative flex flex-col justify-center">
-        <div className="relative aspect-video w-full bg-black rounded-sm border border-border overflow-hidden shadow-2xl">
+        <div className="relative aspect-video w-full bg-black rounded-sm border border-border overflow-hidden shadow-2xl group">
           <video 
             ref={videoRef}
             className="w-full h-full object-cover"
-            src="/videos/vid1.mp4"
-            muted
+            src="/videos/compressed/3.mp4"
+            autoPlay
+            loop
+            muted={isMuted}
             playsInline
+            preload="auto"
             onLoadedMetadata={handleLoadedMetadata}
           />
           {/* Monitor HUD */}
           <div className="absolute top-4 left-4 font-mono text-[10px] text-text-hi bg-black/50 px-2 py-1 rounded">
-            SOURCE: SHOWREEL_V1.mp4
+            SOURCE: SHOWREEL_FINAL_HQ.mp4
           </div>
-          <div className="absolute bottom-4 right-4 font-mono text-[10px] text-red bg-black/50 px-2 py-1 rounded flex items-center gap-2">
+          
+          <button 
+            onClick={() => setIsMuted(!isMuted)}
+            className="absolute top-4 right-4 font-mono text-[10px] text-text-hi bg-black/50 hover:bg-accent hover:text-bg border border-border/50 px-3 py-1 rounded transition-colors opacity-0 group-hover:opacity-100 cursor-pointer"
+          >
+            [ {isMuted ? "UNMUTE" : "MUTE"} ]
+          </button>
+
+          <div className="absolute bottom-4 right-4 font-mono text-[10px] text-red bg-black/50 px-2 py-1 rounded flex items-center gap-2 pointer-events-none">
             <span className="w-2 h-2 rounded-full bg-red animate-pulse" />
             REC
           </div>

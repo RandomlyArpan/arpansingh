@@ -67,27 +67,21 @@ export function Skills() {
           <div className="p-6 md:p-8 flex flex-col gap-8">
             
             {/* Top Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-xs uppercase tracking-widest text-text-mid">
-              <div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs uppercase tracking-widest text-text-mid">
+              <div className="md:col-span-1">
                 <div className="mb-1">Codec:</div>
                 <div className="text-text-hi">H.264 / ProRes 4444</div>
               </div>
-              <div>
+              <div className="md:col-span-2">
                 <div className="mb-1">Experience:</div>
-                <div className="text-text-hi flex items-center gap-2">
-                  <span ref={el => { if (el) countersRef.current[0] = el; }}>5</span> YRS
+                <div className="text-text-hi leading-relaxed normal-case tracking-normal">
+                  Been editing since 2018, shifted to professional softwares in 2025.
                 </div>
               </div>
-              <div>
+              <div className="md:col-span-1">
                 <div className="mb-1">Projects:</div>
                 <div className="text-text-hi flex items-center gap-2">
-                  <span ref={el => { if (el) countersRef.current[1] = el; }}>200</span>+
-                </div>
-              </div>
-              <div>
-                <div className="mb-1">Clients:</div>
-                <div className="text-text-hi flex items-center gap-2">
-                  <span ref={el => { if (el) countersRef.current[2] = el; }}>30</span>+
+                  <span ref={el => { if (el) countersRef.current[0] = el; }}>15</span>+
                 </div>
               </div>
             </div>

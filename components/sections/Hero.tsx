@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useLenis } from "lenis/react";
 import { Timecode } from "@/components/fx/Timecode";
 import { FrameCounter } from "@/components/fx/FrameCounter";
 import { WaveformBar } from "@/components/fx/WaveformBar";
@@ -13,6 +14,7 @@ export function Hero() {
   const nameRef = useRef<HTMLHeadingElement>(null);
   const turbulenceRef = useRef<SVGFETurbulenceElement>(null);
   const displacementRef = useRef<SVGFEDisplacementMapElement>(null);
+  const lenis = useLenis();
 
   useGSAP(() => {
     if (!nameRef.current) return;
@@ -114,7 +116,7 @@ export function Hero() {
           muted 
           loop 
           playsInline
-          src="/videos/vid1.mp4"
+          src="/videos/compressed/5.mp4"
         />
         {/* Color Grade Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(8,8,8,0.8)_100%)] mix-blend-multiply" />
@@ -157,7 +159,19 @@ export function Hero() {
           <div className="mt-12 flex flex-col items-center gap-6 pointer-events-auto">
             <WaveformBar bars={24} animated className="opacity-50" />
             
-            <button className="border border-text-mid/30 px-8 py-3 font-mono text-xs tracking-[0.2em] text-text-hi hover:bg-accent hover:text-bg transition-colors duration-300">
+            <button 
+              onClick={() => {
+                if (lenis) {
+                  lenis.scrollTo("#reel");
+                } else {
+                  const element = document.getElementById("reel");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
+              className="border border-text-mid/30 px-8 py-3 font-mono text-xs tracking-[0.2em] text-text-hi hover:bg-accent hover:text-bg transition-colors duration-300"
+            >
               [ WATCH SHOWREEL ]
             </button>
           </div>
