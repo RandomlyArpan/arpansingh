@@ -7,6 +7,8 @@
 
 # Ignore massive raw video files (GitHub has a 100MB hard limit)
 /public/videos/*.mp4
+/public/workvideo/*.mp4
+/public/WorkVideo/*.mp4
 
 # Allow the small, compressed video files to be tracked for Vercel deployment
 !/public/videos/compressed/*.mp4

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "@/lib/gsapConfig";
@@ -16,6 +16,16 @@ const PROJECTS = [
 export function Work() {
   const containerRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<HTMLDivElement[]>([]);
+
+  const [mutedStates, setMutedStates] = useState<boolean[]>(PROJECTS.map(() => true));
+
+  const toggleMute = (index: number) => {
+    setMutedStates(prev => {
+      const newStates = [...prev];
+      newStates[index] = !newStates[index];
+      return newStates;
+    });
+  };
 
   useGSAP(() => {
     // Query the DOM for the panels instead of relying on React refs, 
@@ -70,12 +80,12 @@ export function Work() {
              <video 
                src={project.videoSrc}
                autoPlay 
-               muted 
+               muted={mutedStates[i]}
                loop 
                playsInline
-               className="absolute inset-0 w-full h-full object-cover opacity-80 scale-105"
+               className="absolute inset-0 w-full h-full object-cover opacity-80 scale-105 pointer-events-none"
              />
-             <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent mix-blend-multiply" />
+             <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent mix-blend-multiply pointer-events-none" />
           </div>
 
           {/* Project Content */}
@@ -93,6 +103,16 @@ export function Work() {
             </div>
             <div className="font-mono text-[10px] tracking-[0.3em] text-text-lo uppercase mt-2">
               ↓ SCROLL FOR NEXT PROJECT
+            </div>
+            
+            {/* Audio Toggle Button */}
+            <div className="absolute right-0 bottom-4 pointer-events-auto">
+              <button 
+                onClick={() => toggleMute(i)}
+                className="border border-border/50 bg-surface/50 backdrop-blur-md px-3 py-1 font-mono text-[10px] tracking-widest text-text-hi hover:bg-accent hover:text-bg transition-colors"
+              >
+                [ SOUND: {mutedStates[i] ? "OFF" : "ON"} ]
+              </button>
             </div>
           </div>
         </div>
