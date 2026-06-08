@@ -4,7 +4,12 @@
 /node_modules
 /.planning
 /.pnp
-/public/videos
+
+# Ignore massive raw video files (GitHub has a 100MB hard limit)
+/public/videos/*.mp4
+
+# Allow the small, compressed video files to be tracked for Vercel deployment
+!/public/videos/compressed/*.mp4
 .pnp.*
 .yarn/*
 !.yarn/patches
