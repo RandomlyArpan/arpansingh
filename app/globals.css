@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #080808;
+  --color-surface: #0f0f0f;
+  --color-border: #1a1a1a;
+  --color-accent: #e8ff47;
+  --color-accent-dim: #b8cc30;
+  --color-red: #ff2d20;
+  --color-text-hi: #f0f0f0;
+  --color-text-mid: #888888;
+  --color-text-lo: #3a3a3a;
+
+  --font-bebas: var(--font-bebas-neue);
+  --font-inter: var(--font-inter);
+  --font-mono: var(--font-dm-mono);
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  :root {
+    --background: #080808;
+    --foreground: #f0f0f0;
+  }
+  
+  html {
+    scroll-behavior: initial; /* Lenis handles this */
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-hi);
+    font-family: var(--font-inter);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom text selection */
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  /* Hide scrollbar for cleaner look */
+  * {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Utilities for visual FX */
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(232, 255, 71, 0.5);
+  }
+}
