@@ -12,6 +12,9 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Refresh ScrollTrigger on route change (if any) to ensure markers are aligned
     ScrollTrigger.refresh();
+    
+    // Normalize scroll AFTER hydration to fix iOS/Android touch jumpiness
+    ScrollTrigger.normalizeScroll(true);
   }, [pathname]);
 
   return (
