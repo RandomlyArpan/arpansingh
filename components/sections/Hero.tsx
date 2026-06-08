@@ -116,7 +116,7 @@ export function Hero() {
           muted 
           loop 
           playsInline
-          src="/videos/compressed/4.mp4"
+          src="/videos/compressed/hero-loop.mp4"
         />
         {/* Color Grade Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(8,8,8,0.8)_100%)] mix-blend-multiply" />
