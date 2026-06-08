@@ -40,7 +40,7 @@ export function Reel() {
   }, { scope: containerRef, dependencies: [videoDuration] });
 
   return (
-    <section ref={containerRef} className="h-screen w-full bg-bg flex flex-col pt-24" id="reel">
+    <section ref={containerRef} className="h-[100dvh] w-full bg-bg flex flex-col pt-24" id="reel">
       {/* Video Monitor */}
       <div className="flex-1 w-full max-w-6xl mx-auto px-4 relative flex flex-col justify-center">
         <div className="relative aspect-video w-full bg-black rounded-sm border border-border overflow-hidden shadow-2xl group">

@@ -74,7 +74,7 @@ export function Contact() {
   };
 
   return (
-    <section ref={containerRef} className="min-h-screen w-full bg-black relative flex flex-col justify-between py-12 px-6 md:px-12" id="contact">
+    <section ref={containerRef} className="min-h-[100dvh] w-full bg-black relative flex flex-col justify-between py-12 px-6 md:px-12" id="contact">
 
       <div className="flex-1 flex flex-col items-center justify-center">
 

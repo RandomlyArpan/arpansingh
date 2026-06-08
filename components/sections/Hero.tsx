@@ -85,7 +85,7 @@ export function Hero() {
   };
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-bg" id="hero">
+    <section ref={containerRef} className="relative h-[100dvh] w-full overflow-hidden bg-bg" id="hero">
       
       {/* SVG Liquid Filter Definition */}
       <svg className="hidden absolute w-0 h-0">

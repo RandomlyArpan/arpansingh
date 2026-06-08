@@ -58,7 +58,7 @@ export function Work() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="h-screen w-full relative bg-bg" id="work">
+    <section ref={containerRef} className="h-[100dvh] w-full relative bg-bg" id="work">
       {PROJECTS.map((project, i) => (
         <div 
           key={project.id}
