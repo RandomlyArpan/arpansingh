@@ -13,17 +13,39 @@ export function LoadingScreen() {
       { time: 1000, value: 2 },
       { time: 2000, value: 1 },
       { time: 3000, value: "▶" },
-      { time: 4000, action: () => setIsVisible(false) },
     ];
 
     const timeouts = sequence.map((step) =>
       setTimeout(() => {
-        if (step.action) step.action();
-        else if (step.value !== undefined) setCount(step.value as number);
+        setCount(step.value as number | string);
       }, step.time)
     );
 
-    return () => timeouts.forEach(clearTimeout);
+    // After the 3-second countdown finishes, hold on the "▶" symbol until videos are actually buffered
+    const waitTimer = setTimeout(() => {
+      const checkInterval = setInterval(() => {
+        const videos = Array.from(document.querySelectorAll('video'));
+        // readyState >= 3 means HAVE_FUTURE_DATA (enough to start playing)
+        const readyVideos = videos.filter(v => v.readyState >= 3).length;
+        
+        if (readyVideos >= 2 || videos.length === 0) {
+          clearInterval(checkInterval);
+          setIsVisible(false);
+        }
+      }, 250);
+
+      // Absolute safety fallback: if network is incredibly slow, force close the loading screen after 8 seconds total
+      setTimeout(() => {
+        clearInterval(checkInterval);
+        setIsVisible(false);
+      }, 5000);
+
+    }, 3500);
+
+    return () => {
+      timeouts.forEach(clearTimeout);
+      clearTimeout(waitTimer);
+    };
   }, []);
 
   return (
