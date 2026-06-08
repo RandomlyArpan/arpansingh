@@ -21,8 +21,9 @@ export function Work() {
 
   const toggleMute = (index: number) => {
     setMutedStates(prev => {
-      const newStates = [...prev];
-      newStates[index] = !newStates[index];
+      // Force all other videos to mute, and just toggle the requested one
+      const newStates = PROJECTS.map(() => true);
+      newStates[index] = !prev[index];
       return newStates;
     });
   };
@@ -57,6 +58,8 @@ export function Work() {
         clipPath: "inset(0 0% 0 0)",
         ease: "power2.inOut",
         duration: 1,
+        onStart: () => setMutedStates(PROJECTS.map(() => true)),
+        onReverseComplete: () => setMutedStates(PROJECTS.map(() => true))
       });
       
       // HOLD state: this creates empty scroll space where the video just plays and stays fully visible!
